@@ -76,6 +76,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                        startActivity(callIntent);
                        startActivity(dialIntent);
                    }
+
+                   Uri mapsIntentUri = Uri.parse(result.getContents());
+                   Intent mapsIntent = new Intent(Intent.ACTION_VIEW, mapsIntentUri);
+                   mapsIntent.setPackage("com.google.andorid.apps.maps");
+                   if (mapsIntent.resolveActivity(getPackageManager()) != null) {
+                       startActivity(mapsIntent);
+                   }
                }
            }
                }else{
