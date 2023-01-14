@@ -82,6 +82,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    mapsIntent.setPackage("com.google.andorid.apps.maps");
                    if (mapsIntent.resolveActivity(getPackageManager()) != null) {
                        startActivity(mapsIntent);
+
+                       String alamat = new String(result.getContents());
+                       String at = "@";
+                       if (alamat.contains(at))
+
+                       {
+                           Intent intent = new Intent(Intent.ACTION_SEND);
+                           String[] recipients = {alamat.replace("http://","")};
+                           intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+                           intent.putExtra(Intent.EXTRA_SUBJECT, "Subject Email");
+                           intent.putExtra(Intent.EXTRA_TEXT, "Type Here");
+                           intent.putExtra(Intent.EXTRA_CC, "");
+                           intent.setType("text/html");
+                           intent.setPackage("com.google.android.gm");
+                           startActivity(Intent.createChooser(intent, "Send mail"));
+                       }
                    }
                }
            }
